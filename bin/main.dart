@@ -1,5 +1,9 @@
-import 'package:christmas_lights_kata/main.dart' as christmas_lights_kata;
+import 'package:christmas_lights_kata/grid.dart';
+import 'package:collection/collection.dart' show IterableExtension;
 
 void main(List<String> arguments) {
-  print('Hello world: ${christmas_lights_kata.calculate()}!');
+  final size = int.tryParse(arguments.firstOrNull ?? '') ?? 50;
+  final grid = Grid(size);
+
+  print(grid);
 }
