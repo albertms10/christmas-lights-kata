@@ -13,15 +13,15 @@ void main() {
     group('.toggle()', () {
       test('toggles the powered state', () {
         // Arrange
-        final led = Led(0, 0);
-        // Act
-        final toggledOnce = led.toggle();
+        final led = Led(0, 0)
+          // Act
+          ..toggle();
         // Assert
-        expect(toggledOnce, isTrue);
+        expect(led.isPowered, isTrue);
         // Act
-        final toggledTwice = led.toggle();
+        led.toggle();
         // Assert
-        expect(toggledTwice, isFalse);
+        expect(led.isPowered, isFalse);
       });
     });
   });
