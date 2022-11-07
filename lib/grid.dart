@@ -13,7 +13,7 @@ class Grid {
   /// The size of this [Grid].
   final int size;
 
-  /// The two-dimensional matriz of [Led]s.
+  /// The two-dimensional matrix of [Led]s.
   late final List<List<Led>> leds;
 
   /// Toggles all [Led]s from [start] to [end] range.
