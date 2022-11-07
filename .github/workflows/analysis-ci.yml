@@ -3,8 +3,19 @@ name: Analysis CI
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '.vscode/**'
+      - '**.md'
+      - '.gitignore'
+      - 'CODEOWNERS'
+    
   pull_request:
     branches: [main]
+    paths-ignore:
+      - '.vscode/**'
+      - '**.md'
+      - '.gitignore'
+      - 'CODEOWNERS'
 
 jobs:
   build:
