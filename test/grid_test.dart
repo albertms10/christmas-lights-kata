@@ -13,19 +13,5 @@ void main() {
       expect(grid.leds.length, gridSize);
       expect(grid.leds.first.length, gridSize);
     });
-
-    group('.toggle()', () {
-      test('toggles the powered state of the selected LEDs', () {
-        // Arrange
-        final grid = Grid(10)
-          // Act
-          ..toggle([0, 0], [9, 9]);
-        // Assert
-        expect(
-          grid.leds.every((row) => row.every((led) => led.isPowered)),
-          isTrue,
-        );
-      });
-    });
   });
 }
