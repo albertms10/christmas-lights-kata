@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:christmas_lights_kata/led.dart';
 
 /// A squared grid of LEDs.
@@ -16,20 +18,9 @@ class Grid {
   /// The two-dimensional matrix of [Led]s.
   late final List<List<Led>> leds;
 
-  /// Toggles all [Led]s from [start] to [end] range.
-  void toggle(List<int> start, List<int> end) {
-    assert(
-      start.length == 2 && end.length == 2,
-      'Start and end must be coordinates tuples.',
-    );
-    assert(
-      start.every(_inRange(size)) && end.every(_inRange(size)),
-      'Start and end must be in the grid range.',
-    );
-  }
+  /// Toggles all [Led]s from [start] to [end] positions.
+  void toggle(Point<int> start, Point<int> end) {}
 
   @override
   String toString() => leds.map((row) => row.join()).join('\n');
 }
-
-bool Function(int) _inRange(int max) => (index) => index >= 0 && index <= max;
