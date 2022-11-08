@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:christmas_lights_kata/led.dart';
+import 'package:christmas_lights_kata/utils/point_bounds_extension.dart';
 
 /// A squared grid of LEDs.
 class Grid {
@@ -16,20 +19,22 @@ class Grid {
   /// The two-dimensional matrix of [Led]s.
   late final List<List<Led>> leds;
 
+  /// Minimum grid boundary position.
+  final min = const Point(0, 0);
+
+  /// Maximum grid boundary position.
+  late final max = Point(size - 1, size - 1);
+
   /// Toggles all [Led]s from [start] to [end] range.
-  void toggle(List<int> start, List<int> end) {
-    assert(
-      start.length == 2 && end.length == 2,
-      'Start and end must be coordinates tuples.',
-    );
-    assert(
-      start.every(_inRange(size)) && end.every(_inRange(size)),
-      'Start and end must be in the grid range.',
-    );
+  void toggle(Point<int> start, Point<int> end) {
+    if (!start.inBounds(min, max)) {
+      throw ArgumentError.value(start, 'start', 'Start must be in bounds.');
+    }
+    if (!end.inBounds(min, max)) {
+      throw ArgumentError.value(end, 'end', 'End must be in bounds.');
+    }
   }
 
   @override
   String toString() => leds.map((row) => row.join()).join('\n');
 }
-
-bool Function(int) _inRange(int max) => (index) => index >= 0 && index <= max;
