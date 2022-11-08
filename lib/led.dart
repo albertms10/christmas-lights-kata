@@ -1,19 +1,12 @@
-import 'dart:math';
-
 import 'package:christmas_lights_kata/utils/random_string_extension.dart';
 
 const _poweredLights = '🔴🟡🟢🔵';
 const _offLight = '⚫️';
 
-/// A grid-positioned LED.
+/// An LED.
 class Led {
-  /// Constructs a new [Led] from [x] and [y] coordinates.
-  Led(int x, int y, {this.isPowered = false})
-      : point = Point(x, y),
-        displayLight = _poweredLights.randomChar;
-
-  /// Two-dimensional coordinates point.
-  final Point<int> point;
+  /// Constructs a new [Led].
+  Led({this.isPowered = false}) : displayLight = _poweredLights.randomChar;
 
   /// Whether this [Led] is turned on or off.
   bool isPowered;

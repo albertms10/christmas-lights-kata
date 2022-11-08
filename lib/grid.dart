@@ -8,8 +8,7 @@ class Grid {
   Grid(this.size)
       : assert(size > 0, 'Size must be positive'),
         leds = [
-          for (var x = 0; x < size; x++)
-            [for (var y = 0; y < size; y++) Led(x, y)],
+          for (var x = 0; x < size; x++) [for (var y = 0; y < size; y++) Led()],
         ];
 
   /// The size of this [Grid].
