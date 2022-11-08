@@ -10,6 +10,13 @@ void main() {
       expect(led.isPowered, isFalse);
     });
 
+    test('uses the powered value on construction', () {
+      // Arrange, Act
+      final led = Led(isPowered: true);
+      // Assert
+      expect(led.isPowered, isTrue);
+    });
+
     group('.toggle()', () {
       test('toggles the powered state', () {
         // Arrange
