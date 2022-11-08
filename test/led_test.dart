@@ -17,8 +17,30 @@ void main() {
       expect(led.isPowered, isTrue);
     });
 
+    group('.turnOn()', () {
+      test('turns on this LED', () {
+        // Arrange
+        final led = Led()
+          // Act
+          ..turnOn();
+        // Assert
+        expect(led.isPowered, isTrue);
+      });
+    });
+
+    group('.turnOff()', () {
+      test('turns off this LED', () {
+        // Arrange
+        final led = Led(isPowered: true)
+          // Act
+          ..turnOff();
+        // Assert
+        expect(led.isPowered, isFalse);
+      });
+    });
+
     group('.toggle()', () {
-      test('toggles the powered state', () {
+      test('toggles the powered state of this LED', () {
         // Arrange
         final led = Led()
           // Act
