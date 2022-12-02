@@ -6,23 +6,27 @@ const _offLight = '⚫️';
 /// An LED.
 class Led {
   /// Constructs a new [Led].
-  Led({this.isPowered = false}) : displayLight = _poweredLights.randomChar;
+  Led({bool isPowered = false})
+      : _isPowered = isPowered,
+        displayLight = _poweredLights.randomChar;
+
+  bool _isPowered;
 
   /// Whether this [Led] is turned on or off.
-  bool isPowered;
+  bool get isPowered => _isPowered;
 
   /// String for displaying the powered light.
   late final String displayLight;
 
   /// Turns on this [Led].
-  bool turnOn() => isPowered = true;
+  bool turnOn() => _isPowered = true;
 
   /// Turns off this [Led].
-  bool turnOff() => isPowered = false;
+  bool turnOff() => _isPowered = false;
 
   /// Toggles the powered state of this [Led] and returns the new state.
-  bool toggle() => isPowered = !isPowered;
+  bool toggle() => _isPowered = !_isPowered;
 
   @override
-  String toString() => isPowered ? displayLight : _offLight;
+  String toString() => _isPowered ? displayLight : _offLight;
 }
