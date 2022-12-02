@@ -68,7 +68,7 @@ void main() {
       });
     });
 
-    group('.poweredLeds', () {
+    group('.poweredLedsCount', () {
       test('returns the number of powered LEDs in the grid', () {
         final grid = Grid(1000)
           ..turnOn(const Point(887, 9), const Point(959, 629))
