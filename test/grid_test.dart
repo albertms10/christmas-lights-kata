@@ -5,18 +5,18 @@ import 'package:test/test.dart';
 
 void main() {
   group('Grid', () {
-    test('creates a squared grid of 10x10', () {
-      // Arrange, Act
-      const gridSize = 10;
-      final grid = Grid(gridSize);
-      // Assert
-      expect(grid.size, gridSize);
-
-      expect(grid.leds.length, gridSize);
-      expect(grid.leds.first.length, gridSize);
+    group('(new)', () {
+      test('creates a squared grid of 10x10', () {
+        const gridSize = 10;
+        final grid = Grid(gridSize);
+        expect(grid.size, gridSize);
+        expect(grid.leds.length, gridSize);
+        expect(grid.leds.first.length, gridSize);
+        print(grid);
+      });
     });
 
-    group('.turnOn', () {
+    group('.turnOn()', () {
       test('turns on all LEDs', () {
         final grid = Grid(10)..turnOn(const Point(0, 0), const Point(9, 9));
         expect(grid.areAllPowered, isTrue);
@@ -47,26 +47,29 @@ void main() {
       });
     });
 
-    group('.turnOff', () {
+    group('.turnOff()', () {
       test('turns off all LEDs', () {
-        final grid = Grid(10)
-          ..turnOn(const Point(0, 0), const Point(9, 9))
-          ..turnOff(const Point(0, 0), const Point(9, 9));
+        final grid = Grid(10)..turnOn(const Point(0, 0), const Point(9, 9));
+        print(grid);
+        grid.turnOff(const Point(0, 0), const Point(9, 9));
         expect(grid.areNonePowered, isTrue);
+        print(grid);
       });
     });
 
-    group('.toggle', () {
+    group('.toggle()', () {
       test('toggles all LEDs', () {
         final grid = Grid(10)..toggle(const Point(0, 0), const Point(9, 9));
         expect(grid.areAllPowered, isTrue);
+        print(grid);
         grid.toggle(const Point(0, 0), const Point(9, 9));
         expect(grid.areNonePowered, isTrue);
+        print(grid);
       });
     });
 
-    group('Santa’s instructions', () {
-      test('are followed correctly', () {
+    group('.poweredLeds', () {
+      test('returns the number of powered LEDs in the grid', () {
         final grid = Grid(1000)
           ..turnOn(const Point(887, 9), const Point(959, 629))
           ..turnOn(const Point(454, 398), const Point(844, 448))
@@ -78,6 +81,7 @@ void main() {
           ..toggle(const Point(720, 196), const Point(897, 994))
           ..toggle(const Point(831, 394), const Point(904, 860));
         expect(grid.poweredLedsCount, 230022);
+        print(grid.poweredLedsCount);
       });
     });
   });
