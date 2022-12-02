@@ -3,32 +3,44 @@ import 'package:test/test.dart';
 
 void main() {
   group('Led', () {
-    test('is not powered by default', () {
-      // Arrange, Act
-      final led = Led();
-      // Assert
-      expect(led.isPowered, isFalse);
+    group('(new)', () {
+      test('is not powered by default', () {
+        final led = Led();
+        expect(led.isPowered, isFalse);
+        print(led);
+      });
+
+      test('uses the powered value on construction', () {
+        final led = Led(isPowered: true);
+        expect(led.isPowered, isTrue);
+        print(led);
+      });
     });
 
-    test('uses the powered value on construction', () {
-      // Arrange, Act
-      final led = Led(isPowered: true);
-      // Assert
-      expect(led.isPowered, isTrue);
+    group('.turnOn()', () {
+      test('turns on this LED', () {
+        final led = Led()..turnOn();
+        expect(led.isPowered, isTrue);
+        print(led);
+      });
+    });
+
+    group('.turnOff()', () {
+      test('turns off this LED', () {
+        final led = Led(isPowered: true)..turnOff();
+        expect(led.isPowered, isFalse);
+        print(led);
+      });
     });
 
     group('.toggle()', () {
-      test('toggles the powered state', () {
-        // Arrange
-        final led = Led()
-          // Act
-          ..toggle();
-        // Assert
+      test('toggles the powered state of this LED', () {
+        final led = Led()..toggle();
         expect(led.isPowered, isTrue);
-        // Act
+        print(led);
         led.toggle();
-        // Assert
         expect(led.isPowered, isFalse);
+        print(led);
       });
     });
   });
