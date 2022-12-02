@@ -17,8 +17,35 @@ class Grid {
   /// The two-dimensional matrix of [Led]s.
   late final List<List<Led>> leds;
 
+  /// Turns on all [Led]s from [start] to [end] positions.
+  void turnOn(Point<int> start, Point<int> end) =>
+      _actOnLeds(start, end, (led) => led.turnOn());
+
+  /// Turns off all [Led]s from [start] to [end] positions.
+  void turnOff(Point<int> start, Point<int> end) =>
+      _actOnLeds(start, end, (led) => led.turnOff());
+
   /// Toggles all [Led]s from [start] to [end] positions.
-  void toggle(Point<int> start, Point<int> end) {}
+  void toggle(Point<int> start, Point<int> end) =>
+      _actOnLeds(start, end, (led) => led.toggle());
+
+  void _actOnLeds(
+    Point<int> start,
+    Point<int> end,
+    void Function(Led led) action,
+  ) {
+    for (var x = start.x; x <= end.x; x++) {
+      for (var y = start.y; y <= end.y; y++) {
+        action(leds[y][x]);
+      }
+    }
+  }
+
+  /// Returns the number of powered [Led]s in the [Grid].
+  int get poweredLedsCount => leds.fold<int>(
+        0,
+        (count, row) => count + row.where((led) => led.isPowered).length,
+      );
 
   @override
   String toString() => leds.map((row) => row.join()).join('\n');
