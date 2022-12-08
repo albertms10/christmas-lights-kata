@@ -35,8 +35,6 @@ class DimmableLed extends Led<int> {
   int toggle() => _brightness = _brightness + 2;
 
   @override
-  String toString() => _brightnessLights.valueFromThreshold(
-        _brightness,
-        defaultValue: _offLight,
-      );
+  String toString() =>
+      _brightnessLights.valueFromThreshold(_brightness) ?? _offLight;
 }
