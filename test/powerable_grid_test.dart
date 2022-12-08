@@ -1,14 +1,14 @@
 import 'dart:math';
 
-import 'package:christmas_lights_kata/grid.dart';
+import 'package:christmas_lights_kata/grid/powerable_grid.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('Grid', () {
+  group('PowerableGrid', () {
     group('(new)', () {
       test('creates a squared grid of 10x10', () {
         const gridSize = 10;
-        final grid = Grid(gridSize);
+        final grid = PowerableGrid(gridSize);
         expect(grid.size, gridSize);
         expect(grid.leds.length, gridSize);
         expect(grid.leds.first.length, gridSize);
@@ -18,7 +18,8 @@ void main() {
 
     group('.turnOn()', () {
       test('turns on all LEDs', () {
-        final grid = Grid(10)..turnOn(const Point(0, 0), const Point(9, 9));
+        final grid = PowerableGrid(10)
+          ..turnOn(const Point(0, 0), const Point(9, 9));
         expect(grid.areAllPowered, isTrue);
         print(grid);
       });
@@ -26,7 +27,7 @@ void main() {
       test('turns on only selected LEDs', () {
         const start = Point(1, 2);
         const end = Point(5, 6);
-        final grid = Grid(10)..turnOn(start, end);
+        final grid = PowerableGrid(10)..turnOn(start, end);
         expect(grid.isPoweredFrom(start, end), isTrue);
         print(grid);
       });
@@ -34,14 +35,14 @@ void main() {
       test('turns on only selected LEDs', () {
         const start = Point(7, 2);
         const end = Point(8, 3);
-        final grid = Grid(10)..turnOn(start, end);
+        final grid = PowerableGrid(10)..turnOn(start, end);
         expect(grid.isPoweredFrom(start, end), isTrue);
         print(grid);
       });
 
       test('turns on only selected LEDs', () {
         const point = Point(1, 1);
-        final grid = Grid(3)..turnOn(point, point);
+        final grid = PowerableGrid(3)..turnOn(point, point);
         expect(grid.isPoweredFrom(point), isTrue);
         print(grid);
       });
@@ -49,7 +50,8 @@ void main() {
 
     group('.turnOff()', () {
       test('turns off all LEDs', () {
-        final grid = Grid(10)..turnOn(const Point(0, 0), const Point(9, 9));
+        final grid = PowerableGrid(10)
+          ..turnOn(const Point(0, 0), const Point(9, 9));
         print(grid);
         grid.turnOff(const Point(0, 0), const Point(9, 9));
         expect(grid.areNonePowered, isTrue);
@@ -59,7 +61,8 @@ void main() {
 
     group('.toggle()', () {
       test('toggles all LEDs', () {
-        final grid = Grid(10)..toggle(const Point(0, 0), const Point(9, 9));
+        final grid = PowerableGrid(10)
+          ..toggle(const Point(0, 0), const Point(9, 9));
         expect(grid.areAllPowered, isTrue);
         print(grid);
         grid.toggle(const Point(0, 0), const Point(9, 9));
@@ -70,7 +73,7 @@ void main() {
 
     group('.poweredLedsCount', () {
       test('returns the number of powered LEDs in the grid', () {
-        final grid = Grid(1000)
+        final grid = PowerableGrid(1000)
           ..turnOn(const Point(887, 9), const Point(959, 629))
           ..turnOn(const Point(454, 398), const Point(844, 448))
           ..turnOff(const Point(539, 243), const Point(559, 965))
@@ -87,12 +90,12 @@ void main() {
   });
 }
 
-extension GridPoweredExtension on Grid {
-  /// Whether all LEDs in this [Grid] are powered.
+extension GridPoweredExtension on PowerableGrid {
+  /// Whether all LEDs in this [PowerableGrid] are powered.
   bool get areAllPowered =>
       leds.every((row) => row.every((led) => led.isPowered));
 
-  /// Whether all LEDs in this [Grid] are not powered.
+  /// Whether all LEDs in this [PowerableGrid] are not powered.
   bool get areNonePowered =>
       leds.every((row) => row.every((led) => !led.isPowered));
 

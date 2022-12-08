@@ -1,21 +1,22 @@
 import 'dart:math';
 
-import 'package:christmas_lights_kata/led.dart';
+import 'package:christmas_lights_kata/led/led.dart';
 
 /// A squared grid of LEDs.
-class Grid {
+class Grid<T extends Led<dynamic>> {
   /// Constructs a new [Grid] from [size].
-  Grid(this.size)
-      : assert(size > 0, 'Size must be positive'),
+  Grid(this.size, T Function() constructor)
+      : assert(size > 0, '"size" must be positive'),
         leds = [
-          for (var x = 0; x < size; x++) [for (var y = 0; y < size; y++) Led()],
+          for (var x = 0; x < size; x++)
+            [for (var y = 0; y < size; y++) constructor()],
         ];
 
   /// The size of this [Grid].
   final int size;
 
   /// The two-dimensional matrix of [Led]s.
-  late final List<List<Led>> leds;
+  final List<List<T>> leds;
 
   /// Turns on all [Led]s from [start] to [end] positions.
   void turnOn(Point<int> start, Point<int> end) =>
@@ -32,7 +33,7 @@ class Grid {
   void _actOnLedsFrom(
     Point<int> start,
     Point<int> end,
-    void Function(Led led) action,
+    void Function(Led<dynamic> led) action,
   ) {
     for (var x = start.x; x <= end.x; x++) {
       for (var y = start.y; y <= end.y; y++) {
@@ -40,12 +41,6 @@ class Grid {
       }
     }
   }
-
-  /// Returns the number of powered [Led]s in the [Grid].
-  int get poweredLedsCount => leds.fold<int>(
-        0,
-        (count, row) => count + row.where((led) => led.isPowered).length,
-      );
 
   @override
   String toString() => leds.map((row) => row.join()).join('\n');
