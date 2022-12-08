@@ -1,12 +1,10 @@
 import 'dart:math';
 
-import 'package:christmas_lights_kata/grid/grid.dart';
 import 'package:christmas_lights_kata/grid/powerable_grid.dart';
-import 'package:christmas_lights_kata/led/powerable_led.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('Grid', () {
+  group('PowerableGrid', () {
     group('(new)', () {
       test('creates a squared grid of 10x10', () {
         const gridSize = 10;
@@ -92,12 +90,12 @@ void main() {
   });
 }
 
-extension GridPoweredExtension on Grid<PowerableLed> {
-  /// Whether all LEDs in this [Grid] are powered.
+extension GridPoweredExtension on PowerableGrid {
+  /// Whether all LEDs in this [PowerableGrid] are powered.
   bool get areAllPowered =>
       leds.every((row) => row.every((led) => led.isPowered));
 
-  /// Whether all LEDs in this [Grid] are not powered.
+  /// Whether all LEDs in this [PowerableGrid] are not powered.
   bool get areNonePowered =>
       leds.every((row) => row.every((led) => !led.isPowered));
 
