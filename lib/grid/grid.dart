@@ -46,12 +46,3 @@ class Grid<T extends Led<dynamic>> {
   @override
   String toString() => leds.map((row) => row.join()).join('\n');
 }
-
-/// Grid Powerable extension.
-extension GridPowerableExtension on Grid<PowerableLed> {
-  /// Returns the number of powered [PowerableLed]s in the [Grid].
-  int get poweredLedsCount => leds.fold<int>(
-        0,
-        (count, row) => count + row.where((led) => led.isPowered).length,
-      );
-}
