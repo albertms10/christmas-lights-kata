@@ -19,17 +19,17 @@ class Grid {
 
   /// Turns on all [Led]s from [start] to [end] positions.
   void turnOn(Point<int> start, Point<int> end) =>
-      _actOnLeds(start, end, (led) => led.turnOn());
+      _actOnLedsFrom(start, end, (led) => led.turnOn());
 
   /// Turns off all [Led]s from [start] to [end] positions.
   void turnOff(Point<int> start, Point<int> end) =>
-      _actOnLeds(start, end, (led) => led.turnOff());
+      _actOnLedsFrom(start, end, (led) => led.turnOff());
 
   /// Toggles all [Led]s from [start] to [end] positions.
   void toggle(Point<int> start, Point<int> end) =>
-      _actOnLeds(start, end, (led) => led.toggle());
+      _actOnLedsFrom(start, end, (led) => led.toggle());
 
-  void _actOnLeds(
+  void _actOnLedsFrom(
     Point<int> start,
     Point<int> end,
     void Function(Led led) action,

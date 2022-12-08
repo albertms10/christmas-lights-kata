@@ -27,7 +27,7 @@ void main() {
         const start = Point(1, 2);
         const end = Point(5, 6);
         final grid = Grid(10)..turnOn(start, end);
-        expect(grid.arePoweredFrom(start, end), isTrue);
+        expect(grid.isPoweredFrom(start, end), isTrue);
         print(grid);
       });
 
@@ -35,14 +35,14 @@ void main() {
         const start = Point(7, 2);
         const end = Point(8, 3);
         final grid = Grid(10)..turnOn(start, end);
-        expect(grid.arePoweredFrom(start, end), isTrue);
+        expect(grid.isPoweredFrom(start, end), isTrue);
         print(grid);
       });
 
       test('turns on only selected LEDs', () {
         const point = Point(1, 1);
         final grid = Grid(3)..turnOn(point, point);
-        expect(grid.arePoweredFrom(point), isTrue);
+        expect(grid.isPoweredFrom(point), isTrue);
         print(grid);
       });
     });
@@ -96,7 +96,7 @@ extension GridPoweredExtension on Grid {
   bool get areNonePowered =>
       leds.every((row) => row.every((led) => !led.isPowered));
 
-  bool arePoweredFrom(Point<int> start, [Point<int>? end]) {
+  bool isPoweredFrom(Point<int> start, [Point<int>? end]) {
     if (end == null) return leds[start.y][start.x].isPowered;
 
     for (var x = 0; x < size; x++) {
