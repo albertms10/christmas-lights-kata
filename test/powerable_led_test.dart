@@ -1,4 +1,4 @@
-import 'package:christmas_lights_kata/powerable_led.dart';
+import 'package:christmas_lights_kata/led/powerable_led.dart';
 import 'package:test/test.dart';
 
 void main() {

@@ -1,4 +1,4 @@
-import 'package:christmas_lights_kata/led.dart';
+import 'package:christmas_lights_kata/led/led.dart';
 import 'package:christmas_lights_kata/utils/random_string_extension.dart';
 
 const _poweredLights = '🔴🟡🟢🔵';
