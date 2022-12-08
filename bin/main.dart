@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:christmas_lights_kata/grid/grid.dart';
-import 'package:christmas_lights_kata/led/powerable_led.dart';
+import 'package:christmas_lights_kata/grid/powerable_grid.dart';
 
 void main(List<String> arguments) {
-  final grid = Grid(1000, PowerableLed.new)
+  final grid = PowerableGrid(1000)
     ..turnOn(const Point(887, 9), const Point(959, 629))
     ..turnOn(const Point(454, 398), const Point(844, 448))
     ..turnOff(const Point(539, 243), const Point(559, 965))
