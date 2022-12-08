@@ -1,10 +1,11 @@
+import 'package:christmas_lights_kata/led.dart';
 import 'package:christmas_lights_kata/utils/random_string_extension.dart';
 
 const _poweredLights = '🔴🟡🟢🔵';
 const _offLight = '⚫️';
 
 /// A powerable LED.
-class PowerableLed {
+class PowerableLed extends Led<bool> {
   /// Constructs a new [PowerableLed].
   PowerableLed({bool isPowered = false})
       : _isPowered = isPowered,
@@ -19,13 +20,16 @@ class PowerableLed {
   late final String displayLight;
 
   /// Turns on this [PowerableLed].
+  @override
   bool turnOn() => _isPowered = true;
 
   /// Turns off this [PowerableLed].
+  @override
   bool turnOff() => _isPowered = false;
 
   /// Toggles the powered state of this [PowerableLed] and returns the new
   /// state.
+  @override
   bool toggle() => _isPowered = !_isPowered;
 
   @override
