@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:christmas_lights_kata/led/led.dart';
-import 'package:christmas_lights_kata/led/powerable_led.dart';
 
 /// A squared grid of LEDs.
 class Grid<T extends Led<dynamic>> {

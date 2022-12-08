@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:christmas_lights_kata/grid/grid.dart';
 import 'package:christmas_lights_kata/grid/powerable_grid.dart';
 
 void main(List<String> arguments) {
