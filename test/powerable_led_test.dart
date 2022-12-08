@@ -1,17 +1,17 @@
-import 'package:christmas_lights_kata/led.dart';
+import 'package:christmas_lights_kata/powerable_led.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('Led', () {
+  group('PowerableLed', () {
     group('(new)', () {
       test('is not powered by default', () {
-        final led = Led();
+        final led = PowerableLed();
         expect(led.isPowered, isFalse);
         print(led);
       });
 
       test('uses the powered value on construction', () {
-        final led = Led(isPowered: true);
+        final led = PowerableLed(isPowered: true);
         expect(led.isPowered, isTrue);
         print(led);
       });
@@ -19,7 +19,7 @@ void main() {
 
     group('.turnOn()', () {
       test('turns on this LED', () {
-        final led = Led()..turnOn();
+        final led = PowerableLed()..turnOn();
         expect(led.isPowered, isTrue);
         print(led);
       });
@@ -27,7 +27,7 @@ void main() {
 
     group('.turnOff()', () {
       test('turns off this LED', () {
-        final led = Led(isPowered: true)..turnOff();
+        final led = PowerableLed(isPowered: true)..turnOff();
         expect(led.isPowered, isFalse);
         print(led);
       });
@@ -35,7 +35,7 @@ void main() {
 
     group('.toggle()', () {
       test('toggles the powered state of this LED', () {
-        final led = Led()..toggle();
+        final led = PowerableLed()..toggle();
         expect(led.isPowered, isTrue);
         print(led);
         led.toggle();
